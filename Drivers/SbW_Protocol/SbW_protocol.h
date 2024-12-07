@@ -18,6 +18,7 @@ typedef enum SbW_Err_Codes{
 
 typedef struct SbW_Protocol{
 	uint8_t Stream_ON:1;
+	uint8_t Farme_Len;
 
 	struct Hw_Interface{
 		void (*Send_Reply)(uint8_t *data, uint16_t len);
