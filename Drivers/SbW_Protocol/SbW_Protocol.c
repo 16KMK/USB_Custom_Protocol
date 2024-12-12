@@ -1,11 +1,4 @@
-/*
- * SbW_Protocol.c
- *
- *  Created on: Dec 7, 2024
- *      Author: ramys
- */
-
-#include "SbW_protocol.h"
+#include "SBW_protocol.h"
 
 /**
  * @fn uint8_t CRC8(uint8_t*, uint8_t)
@@ -23,29 +16,40 @@ static uint8_t CRC8(uint8_t *data, uint8_t len) {
 	return CRC;
 }
 
-void SbW_Request_Recieved_CB(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
+void SBW_Request_Received_CB(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
 	uint8_t CRC_Result = CRC8(data, len - 1);
 
 	//check the data integrity
 	if (CRC_Result != data[len - 1]) {
 		//CRC error
-		S->HW_Interface_t.User_Callback(SbW_ERROR_CRC);
-		return;
+		S->HW_Interface_t.User_Callback(SBW_ERROR_CRC);
+		return CRC_Result; //ignoring this frame
 	}
 
-	uint8_t CMD = dta[0];
-
+	//check the command (1st byte of the frame)
+	uint8_t CMD = data[0];
 	switch (CMD) {
-	case 0x01:
-		S->HW_Interface_t.User_Callback(SbW_ERROR_NoERROR);
+	case 0x01: //1st command (Controls the stream)
+		S->HW_Interface_t.User_Callback(SBW_ERROR_NoERROR);
 		//update the stream control variable
 		S->Stream_ON = data[2];
-		//send bac the reply to the PC
+		//send back the reply to the PC
 		S->HW_Interface_t.Send_Reply(data, len);
+		break;
+
+		return;
+	case 0x02: //2nd command (Sets the length of the cyclic frames)
+		S->HW_Interface_t.User_Callback(SBW_ERROR_NoERROR);
+		S->Frame_Len = len;
+		S->Frame_Len = data[2];
+		S->HW_Interface_t.Send_Reply(data, len);//same frame of the request frame
 		break;
 
 	default:
 		return;
 	}
+
+}
+void SBW_Reply_Transmit(SBW_Protocol_t *S, uint8_t *data, uint16_t len) {
 
 }

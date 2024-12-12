@@ -1,31 +1,24 @@
-/*
- * SbW_protocol.h
- *
- *  Created on: Dec 7, 2024
- *      Author: ramys
- */
-
 #ifndef SBW_PROTOCOL_SBW_PROTOCOL_H_
 #define SBW_PROTOCOL_SBW_PROTOCOL_H_
 
 #include <stdint.h>
 
-typedef enum SbW_Err_Codes{
-	SbW_ERROR_NoERROR,
-	SbW_ERROR_CRC,
+typedef enum SBW_Err_Codes {
+	SBW_ERROR_NoERROR,
+	SBW_ERROR_CRC,
 
-}SbW_Err_Codes_t;
+} SBW_Err_Codes_t;
 
-typedef struct SbW_Protocol{
-	uint8_t Stream_ON:1;
-	uint8_t Farme_Len;
+typedef struct SBW_Protocol {
+	uint8_t Stream_ON :1;
+	uint8_t Frame_Len;
 
-	struct Hw_Interface{
+	struct Hw_Interface {
 		void (*Send_Reply)(uint8_t *data, uint16_t len);
-		void (*User_Callback)(SbW_Err_Codes_t Error_Code);
-	}HW_Interface_t;
-}SbW_Protocol_t;
+		void (*User_Callback)(SBW_Err_Codes_t Error_Code);
+	} HW_Interface_t;
+} SBW_Protocol_t;
 
-void SbW_Request_Recieved_CB(SbW_Protocol_t *S,uint8_t *data, uint16_t len);
-
+void SBW_Request_Received_CB(SBW_Protocol_t *S, uint8_t *data, uint16_t len);
+void SBW_Reply_Transmit(SBW_Protocol_t *S, uint8_t *data, uint16_t len);
 #endif /* SBW_PROTOCOL_SBW_PROTOCOL_H_ */

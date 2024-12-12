@@ -19,7 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_device.h"
-#include "../../Drivers/SbW_Protocol/SbW_protocol.h"
+
+#include "../../Drivers/SBW_Protocol/SBW_protocol.h"
 #include "../Hardware_Interface/Hardware_Interface.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -34,7 +35,7 @@ void App_User_Callback(SbW_Err_Codes_t Error_Code);
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-SbW_Protocol_t S = {
+SBW_Protocol_t S = {
 .HW_Interface_t = {
 .Send_Reply = SbW_Protocol_Reply,
 .User_Callback = App_User_Callback
@@ -174,7 +175,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void App_User_Callback(SbW_Err_Codes_t Error_Code){
+void App_User_Callback(SBW_Err_Codes_t Error_Code){
 
 }
 /* USER CODE END 4 */

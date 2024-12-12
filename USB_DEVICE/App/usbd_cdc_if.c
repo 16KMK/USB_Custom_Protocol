@@ -20,9 +20,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_cdc_if.h"
-
+#include <stdint.h>
 /* USER CODE BEGIN INCLUDE */
-#include "../../Drivers/SbW_Protocol/SbW_protocol.h"
+#include "../../Drivers/SBW_Protocol/SBW_protocol.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +31,7 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-extern SbW_Protocol_t S;
+extern SBW_Protocol_t S;
 /* USER CODE END PV */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -249,7 +249,7 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t *pbuf, uint16_t length) {
  */
 static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len) {
 	/* USER CODE BEGIN 6 */
-	SbW_Request_Recieved_CB(&S, Buf, (uint16_t) (*Len));
+	SBW_Request_Received_CB(&S, Buf, (uint16_t) (*Len));
 	USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
 	USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 	return (USBD_OK);
