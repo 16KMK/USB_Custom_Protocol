@@ -1,0 +1,3 @@
+SbW_Protocol.c:11:16:CRC8	2
+SbW_Protocol.c:19:6:SBW_Request_Received_CB	4
+SbW_Protocol.c:53:6:SBW_Reply_Transmit	1

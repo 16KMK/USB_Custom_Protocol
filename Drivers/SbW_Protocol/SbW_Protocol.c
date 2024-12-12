@@ -16,14 +16,14 @@ static uint8_t CRC8(uint8_t *data, uint8_t len) {
 	return CRC;
 }
 
-void SBW_Request_Received_CB(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
+void SBW_Request_Received_CB(SBW_Protocol_t *S, uint8_t *data, uint16_t len) {
 	uint8_t CRC_Result = CRC8(data, len - 1);
 
 	//check the data integrity
 	if (CRC_Result != data[len - 1]) {
 		//CRC error
 		S->HW_Interface_t.User_Callback(SBW_ERROR_CRC);
-		return CRC_Result; //ignoring this frame
+		//return CRC_Result; //ignoring this frame
 	}
 
 	//check the command (1st byte of the frame)

@@ -30,14 +30,14 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-void App_User_Callback(SbW_Err_Codes_t Error_Code);
+void App_User_Callback(SBW_Err_Codes_t Error_Code);
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 SBW_Protocol_t S = {
 .HW_Interface_t = {
-.Send_Reply = SbW_Protocol_Reply,
+.Send_Reply = SBW_Protocol_Reply,
 .User_Callback = App_User_Callback
 },
 };

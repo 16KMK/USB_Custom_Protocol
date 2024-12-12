@@ -25,8 +25,8 @@ SUBDIRS := \
 Core/Hardware_Interface \
 Core/Src \
 Core/Startup \
-Drivers/SBW_Protocol \
 Drivers/STM32F1xx_HAL_Driver/Src \
+Drivers/SbW_Protocol \
 Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src \
 USB_DEVICE/App \

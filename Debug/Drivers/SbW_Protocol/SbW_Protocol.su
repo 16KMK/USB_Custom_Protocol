@@ -1,0 +1,3 @@
+../Drivers/SbW_Protocol/SbW_Protocol.c:11:16:CRC8	24	static
+../Drivers/SbW_Protocol/SbW_Protocol.c:19:6:SBW_Request_Received_CB	32	static
+../Drivers/SbW_Protocol/SbW_Protocol.c:53:6:SBW_Reply_Transmit	24	static

@@ -13,8 +13,8 @@ RM := rm -rf
 -include USB_DEVICE/App/subdir.mk
 -include Middlewares/ST/STM32_USB_Device_Library/Core/Src/subdir.mk
 -include Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/subdir.mk
+-include Drivers/SbW_Protocol/subdir.mk
 -include Drivers/STM32F1xx_HAL_Driver/Src/subdir.mk
--include Drivers/SBW_Protocol/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include Core/Hardware_Interface/subdir.mk
@@ -66,8 +66,8 @@ all: main-build
 main-build: USB_Custom_Protocol.elf secondary-outputs
 
 # Tool invocations
-USB_Custom_Protocol.elf USB_Custom_Protocol.map: $(OBJS) $(USER_OBJS) C:\Users\kamal\OneDrive\ -\ Helwan\ university(Engineering\ Mataria)\Documents\Embedded\ S.C\SbW_Protocol\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "USB_Custom_Protocol.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\kamal\OneDrive - Helwan university(Engineering Mataria)\Documents\Embedded S.C\SbW_Protocol\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="USB_Custom_Protocol.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+USB_Custom_Protocol.elf USB_Custom_Protocol.map: $(OBJS) $(USER_OBJS) C:\Users\ramys\OneDrive\SBW\ Project\Embedded\SbW_Protocol\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "USB_Custom_Protocol.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\ramys\OneDrive\SBW Project\Embedded\SbW_Protocol\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="USB_Custom_Protocol.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
