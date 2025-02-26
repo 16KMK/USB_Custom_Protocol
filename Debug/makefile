@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (10.3-2021.10)
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -58,6 +58,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 USB_Custom_Protocol.list \
 
+OBJCOPY_HEX += \
+USB_Custom_Protocol.hex \
+
 
 # All Target
 all: main-build
@@ -66,8 +69,8 @@ all: main-build
 main-build: USB_Custom_Protocol.elf secondary-outputs
 
 # Tool invocations
-USB_Custom_Protocol.elf USB_Custom_Protocol.map: $(OBJS) $(USER_OBJS) C:\Users\ramys\OneDrive\SBW\ Project\Embedded\SbW_Protocol\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "USB_Custom_Protocol.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\ramys\OneDrive\SBW Project\Embedded\SbW_Protocol\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="USB_Custom_Protocol.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+USB_Custom_Protocol.elf USB_Custom_Protocol.map: $(OBJS) $(USER_OBJS) C:\Users\kamal\OneDrive\ -\ Helwan\ university(Engineering\ Mataria)\Documents\Embedded\ S.C\Custom_USB_Protocol\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "USB_Custom_Protocol.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\kamal\OneDrive - Helwan university(Engineering Mataria)\Documents\Embedded S.C\Custom_USB_Protocol\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="USB_Custom_Protocol.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -81,12 +84,17 @@ USB_Custom_Protocol.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_D
 	@echo 'Finished building: $@'
 	@echo ' '
 
+USB_Custom_Protocol.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "USB_Custom_Protocol.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) USB_Custom_Protocol.elf USB_Custom_Protocol.list USB_Custom_Protocol.map default.size.stdout
+	-$(RM) USB_Custom_Protocol.elf USB_Custom_Protocol.hex USB_Custom_Protocol.list USB_Custom_Protocol.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

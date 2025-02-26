@@ -22,7 +22,8 @@
 #include "usbd_cdc_if.h"
 #include <stdint.h>
 /* USER CODE BEGIN INCLUDE */
-#include "../../Drivers/SBW_Protocol/SBW_protocol.h"
+
+#include "../../Drivers/SbW_Protocol/SbW_protocol.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +32,7 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-extern SBW_Protocol_t S;
+extern SbW_Protocol_t S;
 /* USER CODE END PV */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
