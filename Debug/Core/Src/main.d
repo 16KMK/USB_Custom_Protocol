@@ -27,7 +27,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../USB_DEVICE/App/usb_device.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
  ../USB_DEVICE/Target/usbd_conf.h \
- ../Core/Src/../../Drivers/SBW_Protocol/SBW_protocol.h \
+ ../Core/Src/../../Drivers/SbW_Protocol/SbW_protocol.h \
  ../Core/Src/../Hardware_Interface/Hardware_Interface.h \
  ../Core/Src/../Hardware_Interface/../../USB_DEVICE/App/usbd_cdc_if.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
@@ -66,7 +66,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../USB_DEVICE/App/usb_device.h:
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
 ../USB_DEVICE/Target/usbd_conf.h:
-../Core/Src/../../Drivers/SBW_Protocol/SBW_protocol.h:
+../Core/Src/../../Drivers/SbW_Protocol/SbW_protocol.h:
 ../Core/Src/../Hardware_Interface/Hardware_Interface.h:
 ../Core/Src/../Hardware_Interface/../../USB_DEVICE/App/usbd_cdc_if.h:
 ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:

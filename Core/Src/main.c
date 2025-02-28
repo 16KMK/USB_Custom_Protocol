@@ -35,8 +35,10 @@ void App_User_Callback(SbW_Err_Codes_t Error_Code);
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-SbW_Protocol_t S = { .SamplingFreq = 1234, .HW_Interface_t = { .Send_Reply =
-		SbW_Protocol_Reply, .User_Callback = App_User_Callback }, };
+SbW_Protocol_t S =
+		{ .SamplingFreq = 0x1234, .Frame_Len = 8, .HW_Interface_t = {
+				.Send_Reply = SbW_Protocol_Reply, .User_Callback =
+						App_User_Callback }, };
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
