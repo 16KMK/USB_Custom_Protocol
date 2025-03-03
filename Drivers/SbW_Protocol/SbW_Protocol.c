@@ -63,6 +63,7 @@ void SbW_Request_Received_CB(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
 			data[2] = 0;
 			//data[3]|data[4] for CRC_Result
 		}
+		break;
 	default:
 		return;
 	}

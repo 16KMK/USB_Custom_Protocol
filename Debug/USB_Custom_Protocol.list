@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0001926e  00000000  00000000  000189a2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000ea68  00000000  00000000  00031c10  2**0
+ 17 .debug_line   0000ea66  00000000  00000000  00031c10  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000844a3  00000000  00000000  00040678  2**0
+ 18 .debug_str    000844a3  00000000  00000000  00040676  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000c4b1b  2**0
+ 19 .comment      00000043  00000000  00000000  000c4b19  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000276c  00000000  00000000  000c4b60  2**2
+ 20 .debug_frame  0000276c  00000000  00000000  000c4b5c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000009a  00000000  00000000  000c72cc  2**0
+ 21 .debug_line_str 0000009a  00000000  00000000  000c72c8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -11470,10 +11470,10 @@ void SbW_Request_Received_CB(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
  800526c:	d002      	beq.n	8005274 <SbW_Request_Received_CB+0x7e>
  800526e:	2b02      	cmp	r3, #2
  8005270:	d035      	beq.n	80052de <SbW_Request_Received_CB+0xe8>
-			S->Frame_Len = data[3];
 			data[2] = 0;
 			//data[3]|data[4] for CRC_Result
 		}
+		break;
 	default:
 		return;
  8005272:	e075      	b.n	8005360 <SbW_Request_Received_CB+0x16a>
@@ -11566,8 +11566,8 @@ void SbW_Request_Received_CB(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
  8005304:	68fa      	ldr	r2, [r7, #12]
  8005306:	7852      	ldrb	r2, [r2, #1]
  8005308:	701a      	strb	r2, [r3, #0]
-		return;
- 800530a:	e029      	b.n	8005360 <SbW_Request_Received_CB+0x16a>
+		break;
+ 800530a:	e009      	b.n	8005320 <SbW_Request_Received_CB+0x12a>
 			len = 5;
  800530c:	2305      	movs	r3, #5
  800530e:	80fb      	strh	r3, [r7, #6]
@@ -11581,8 +11581,8 @@ void SbW_Request_Received_CB(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
  800531a:	3302      	adds	r3, #2
  800531c:	2200      	movs	r2, #0
  800531e:	701a      	strb	r2, [r3, #0]
-		return;
- 8005320:	e01e      	b.n	8005360 <SbW_Request_Received_CB+0x16a>
+		break;
+ 8005320:	bf00      	nop
 	}
 
 	CRC_Result = CRC16(data, len - 2);

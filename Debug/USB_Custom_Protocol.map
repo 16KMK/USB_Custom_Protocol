@@ -4720,7 +4720,7 @@ LOAD C:/STM/STM32CubeIDE_1.12.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ex
  .debug_macro   0x00018f07       0x1c ./USB_DEVICE/App/usbd_desc.o
  .debug_macro   0x00018f23      0x34b ./USB_DEVICE/Target/usbd_conf.o
 
-.debug_line     0x00000000     0xea68
+.debug_line     0x00000000     0xea66
  .debug_line    0x00000000      0xa31 ./Core/Hardware_Interface/Hardware_Interface.o
  .debug_line    0x00000a31      0xb5d ./Core/Src/main.o
  .debug_line    0x0000158e      0x6ff ./Core/Src/stm32f1xx_hal_msp.o
@@ -4734,15 +4734,15 @@ LOAD C:/STM/STM32CubeIDE_1.12.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ex
  .debug_line    0x00005d12      0xdb3 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
  .debug_line    0x00006ac5      0x8f4 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o
  .debug_line    0x000073b9     0x107b ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usb.o
- .debug_line    0x00008434      0x55e ./Drivers/SbW_Protocol/SbW_Protocol.o
- .debug_line    0x00008992      0xd01 ./Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.o
- .debug_line    0x00009693      0xd7d ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o
- .debug_line    0x0000a410      0xfbd ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
- .debug_line    0x0000b3cd      0xa13 ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
- .debug_line    0x0000bde0      0x9d3 ./USB_DEVICE/App/usb_device.o
- .debug_line    0x0000c7b3      0xa5e ./USB_DEVICE/App/usbd_cdc_if.o
- .debug_line    0x0000d211      0xa9c ./USB_DEVICE/App/usbd_desc.o
- .debug_line    0x0000dcad      0xdbb ./USB_DEVICE/Target/usbd_conf.o
+ .debug_line    0x00008434      0x55c ./Drivers/SbW_Protocol/SbW_Protocol.o
+ .debug_line    0x00008990      0xd01 ./Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.o
+ .debug_line    0x00009691      0xd7d ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o
+ .debug_line    0x0000a40e      0xfbd ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
+ .debug_line    0x0000b3cb      0xa13 ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
+ .debug_line    0x0000bdde      0x9d3 ./USB_DEVICE/App/usb_device.o
+ .debug_line    0x0000c7b1      0xa5e ./USB_DEVICE/App/usbd_cdc_if.o
+ .debug_line    0x0000d20f      0xa9c ./USB_DEVICE/App/usbd_desc.o
+ .debug_line    0x0000dcab      0xdbb ./USB_DEVICE/Target/usbd_conf.o
 
 .debug_str      0x00000000    0x844a3
  .debug_str     0x00000000    0x8192a ./Core/Hardware_Interface/Hardware_Interface.o
