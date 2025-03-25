@@ -76,3 +76,4 @@ void SbW_Request_Received_CB(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
 void SbW_Reply_Transmit(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
 
 }
+

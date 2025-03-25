@@ -7,11 +7,12 @@ typedef enum SbW_Err_Codes {
 	SbW_ERROR_NoERROR, SbW_ERROR_CRC,
 } SbW_Err_Codes_t;
 
+
 typedef struct SbW_Protocol {
 	uint8_t Stream_ON :1;
 	uint8_t Frame_Len;
 	uint16_t SamplingFreq;
-
+	uint16_t Frame_Buffer;
 	uint8_t R_W :1;
 	uint8_t CMD;
 

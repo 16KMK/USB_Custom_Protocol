@@ -19,9 +19,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_device.h"
-
+#include <stdbool.h>
 #include "../../Drivers/SbW_Protocol/SbW_protocol.h"
 #include "../Hardware_Interface/Hardware_Interface.h"
+
+#include "../../FIFO/FIFO.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -39,6 +41,7 @@ SbW_Protocol_t S =
 		{ .SamplingFreq = 0x1234, .Frame_Len = 8, .HW_Interface_t = {
 				.Send_Reply = SbW_Protocol_Reply, .User_Callback =
 						App_User_Callback }, };
+fifo_T f;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,7 +64,14 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+// Global flags for USB transmission state
+volatile bool usb_transmission_in_progress = false;
+volatile bool usb_transmission_done_flag = false;
+uint16_t adc_read(void) {
+	static uint16_t dummy_val = 0;
+	dummy_val = (dummy_val + 123) % 1024; // Simulate a 10-bit ADC reading (0-1023)
+	return dummy_val;
+}
 /* USER CODE END 0 */
 
 /**
@@ -70,7 +80,7 @@ static void MX_GPIO_Init(void);
  */
 int main(void) {
 	/* USER CODE BEGIN 1 */
-
+	fifo_init(&f);
 	/* USER CODE END 1 */
 
 	/* MCU Configuration--------------------------------------------------------*/
@@ -102,9 +112,33 @@ int main(void) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
+		/*
+		// If USB is not busy, continue enqueuing ADC readings
+		if (!usb_transmission_in_progress) {
+			uint16_t adc_value = adc_read();
+			fifo_enqueue(&f, adc_value);
+
+			// Check if FIFO is full (or reaches a predetermined batch size)
+			if (f.count >= FIFO_SIZE) {
+				usb_transmission_in_progress = true;
+				// Trigger USB transmission of all FIFO data
+				CDC_Transmit_FS(f.FIFO_Buffer, sizeof(f.FIFO_Buffer));
+			}
+		}
+
+		// Check if USB transmission has completed
+		if (usb_transmission_done_flag) {
+			// Clear the FIFO after transmission
+			fifo_init(&f);
+			usb_transmission_done_flag = false;
+			usb_transmission_in_progress = false;
+			// Simulate ADC sampling interval
+			HAL_Delay(200); // Sleep for 200ms (adjust as needed)
+		}*/
+		return 0;
 	}
-	/* USER CODE END 3 */
 }
+/* USER CODE END 3 */
 
 /**
  * @brief System Clock Configuration
