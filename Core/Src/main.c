@@ -19,10 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_device.h"
-#include <stdbool.h>
 #include "../../Drivers/SbW_Protocol/SbW_protocol.h"
 #include "../Hardware_Interface/Hardware_Interface.h"
-
 #include "../../FIFO/FIFO.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -37,16 +35,31 @@ void App_User_Callback(SbW_Err_Codes_t Error_Code);
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-SbW_Protocol_t S =
-		{ .SamplingFreq = 0x1234, .Frame_Len = 8, .HW_Interface_t = {
-				.Send_Reply = SbW_Protocol_Reply, .User_Callback =
-						App_User_Callback }, };
-fifo_T f;
+
+typedef struct {
+	float Id;
+	float Iq;
+	float Vd;
+	float Vq;
+} DataFrame;
+
+DataFrame F;
+
+#define Def_Frame_Len sizeof(DataFrame)
+#define FIFO_Depth 50
+uint8_t FrameBuffer[Def_Frame_Len * FIFO_Depth];
+
+SbW_Protocol_t S = { .SamplingFreq = 0x1234, .Frame_Len = Def_Frame_Len,
+		.HW_Interface_t = { .Send_Reply = SbW_Protocol_Reply, .User_Callback =
+				App_User_Callback }, .Fifo_Buffer = FrameBuffer,
+		.Fifo_Buffer_Size = sizeof(FrameBuffer), .FrameDataBaseAddress =
+				(uint8_t*) &F };
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+TIM_HandleTypeDef htim1 = { .Instance = TIM1, };
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -64,14 +77,8 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-// Global flags for USB transmission state
-volatile bool usb_transmission_in_progress = false;
-volatile bool usb_transmission_done_flag = false;
-uint16_t adc_read(void) {
-	static uint16_t dummy_val = 0;
-	dummy_val = (dummy_val + 123) % 1024; // Simulate a 10-bit ADC reading (0-1023)
-	return dummy_val;
-}
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+//	if(htim->Instance == )}
 /* USER CODE END 0 */
 
 /**
@@ -80,7 +87,6 @@ uint16_t adc_read(void) {
  */
 int main(void) {
 	/* USER CODE BEGIN 1 */
-	fifo_init(&f);
 	/* USER CODE END 1 */
 
 	/* MCU Configuration--------------------------------------------------------*/
@@ -103,7 +109,13 @@ int main(void) {
 	MX_GPIO_Init();
 	MX_USB_DEVICE_Init();
 	/* USER CODE BEGIN 2 */
+	SbW_Init(&S);
 
+	for (uint8_t x = 0; x < 10; x++) {
+		F.Id = 2 * x;
+		SbW_Timer_Callback(&S);
+
+	}
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -112,30 +124,6 @@ int main(void) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		/*
-		// If USB is not busy, continue enqueuing ADC readings
-		if (!usb_transmission_in_progress) {
-			uint16_t adc_value = adc_read();
-			fifo_enqueue(&f, adc_value);
-
-			// Check if FIFO is full (or reaches a predetermined batch size)
-			if (f.count >= FIFO_SIZE) {
-				usb_transmission_in_progress = true;
-				// Trigger USB transmission of all FIFO data
-				CDC_Transmit_FS(f.FIFO_Buffer, sizeof(f.FIFO_Buffer));
-			}
-		}
-
-		// Check if USB transmission has completed
-		if (usb_transmission_done_flag) {
-			// Clear the FIFO after transmission
-			fifo_init(&f);
-			usb_transmission_done_flag = false;
-			usb_transmission_in_progress = false;
-			// Simulate ADC sampling interval
-			HAL_Delay(200); // Sleep for 200ms (adjust as needed)
-		}*/
-		return 0;
 	}
 }
 /* USER CODE END 3 */

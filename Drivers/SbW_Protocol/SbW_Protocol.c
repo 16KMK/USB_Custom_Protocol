@@ -1,4 +1,5 @@
 #include "SbW_protocol.h"
+#include <string.h>
 
 /**
  * @fn uint16_t CRC16(uint8_t*, uint16_t)
@@ -14,6 +15,10 @@ static uint16_t CRC16(uint8_t *data, uint16_t len) {
 		CRC += data[x];
 	}
 	return CRC;
+}
+
+void SbW_Init(SbW_Protocol_t *S){
+	fifo_init(&S->MessageFifo);
 }
 
 void SbW_Request_Received_CB(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
@@ -77,3 +82,10 @@ void SbW_Reply_Transmit(SbW_Protocol_t *S, uint8_t *data, uint16_t len) {
 
 }
 
+void SbW_Timer_Callback(SbW_Protocol_t *S) {
+	int16_t Head = fifo_enqueue(&S->MessageFifo);
+	//implement the enqueue operation
+	memcpy(S->Fifo_Buffer+(Head*S->Frame_Len),
+			S->FrameDataBaseAddress,
+			S->Frame_Len);
+}

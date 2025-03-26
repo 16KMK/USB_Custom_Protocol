@@ -1,3 +1,5 @@
-../Drivers/SbW_Protocol/SbW_Protocol.c:11:17:CRC16	24	static
-../Drivers/SbW_Protocol/SbW_Protocol.c:19:6:SbW_Request_Received_CB	32	static
-../Drivers/SbW_Protocol/SbW_Protocol.c:76:6:SbW_Reply_Transmit	24	static
+../Drivers/SbW_Protocol/SbW_Protocol.c:12:17:CRC16	24	static
+../Drivers/SbW_Protocol/SbW_Protocol.c:20:6:SbW_Init	16	static
+../Drivers/SbW_Protocol/SbW_Protocol.c:24:6:SbW_Request_Received_CB	32	static
+../Drivers/SbW_Protocol/SbW_Protocol.c:81:6:SbW_Reply_Transmit	24	static
+../Drivers/SbW_Protocol/SbW_Protocol.c:85:6:SbW_Timer_Callback	24	static
